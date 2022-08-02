@@ -38,7 +38,7 @@ const App = () => {
   return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} initialParams={{name:'dlam_'}}  options={{ headerShown: false, title: 'Welcome' }} />
+          <Stack.Screen name="Home" component={HomeScreen} initialParams={{name:'root'}}  options={{ headerShown: false }} />
           <Stack.Screen name="Profile" component={StudyScreen} />
         </Stack.Navigator>
       </NavigationContainer>
