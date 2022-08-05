@@ -1,23 +1,27 @@
 import * as React from 'react';
-import {Component} from 'react';
+// import {Component} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {
   StyleSheet,
   View,
   Text,
   Button,
+  TextInput,
+  ScrollView,
 } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-
-const Tab = createMaterialBottomTabNavigator();
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import HomeTab from './components/main/Home'
+import StudyBoard from './components/StudyBoard'
+
+const Tab = createMaterialBottomTabNavigator();
 // const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
 
 
 // 네비게이션 설정
@@ -28,13 +32,16 @@ const Setting = () => {
     </View>
   );
 };
-const Home = () => {
-  return (
-    <View style={[styles.container, { backgroundColor: "#EEE" }]}>
-      <Text> 홈 페이지</Text>
-    </View>
-  );
-};
+// const Home = () => {
+//   return (
+//     <View style={styles.card}>
+//       <TextInput style={styles.input} placeholder="Add an item!" />
+//       <ScrollView>
+//           <Text>TodoList</Text>
+//       </ScrollView>
+//     </View>
+//   );
+// };
 const Chat = () => {
   return (
     <View style={[styles.container, { backgroundColor: "#EEE" }]}>
@@ -54,12 +61,10 @@ const MyPage = () => {
 // 네이게이션 최상단 설정
 function RootNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Root"
-        component={TabNavigator}
-        options={ {headerShown: false} }
-        />
+    <Stack.Navigator initialRouteName="Root">
+      <Stack.Screen name="Login" component={Setting} options={ {headerShown: false} } />
+      <Stack.Screen name="Root" component={TabNavigator} options={ {headerShown: false} } />
+      <Stack.Screen name="StudyBoard" component={StudyBoard} options={ {headerShown: false} } />
     </Stack.Navigator>
   );
 }
@@ -78,7 +83,7 @@ function TabNavigator() {
           <Ionicons name="ios-settings" color={color} size={25} />
         ),
       }} />
-      <Tab.Screen name="홈" component={Home} 
+      <Tab.Screen name="홈" component={HomeTab} 
         options={{headerShown: false,
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
