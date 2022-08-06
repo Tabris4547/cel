@@ -65,6 +65,7 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={Setting} options={ {headerShown: false} } />
       <Stack.Screen name="Root" component={TabNavigator} options={ {headerShown: false} } />
       <Stack.Screen name="StudyBoard" component={StudyBoard} options={ {headerShown: false} } />
+      <Stack.Screen name="SearchBoard" component={StudyBoard} options={ {headerShown: false} } />
     </Stack.Navigator>
   );
 }

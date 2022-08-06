@@ -10,9 +10,10 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
-
-
+// 스터디 목록
 const studyList = [
   {
     id: '1',
@@ -51,6 +52,7 @@ const studyList = [
   },
 ]
 
+// 스터디 컴포넌트
 const Item = ({ id, name, tags, navigation }) => (
   <TouchableOpacity style={styles.studyComponent} onPress={ () => { navigation.navigate('StudyBoard', {id: {id}}) }}>
     <Text style={styles.compTitle}> {name}  </Text>
@@ -63,28 +65,66 @@ const Item = ({ id, name, tags, navigation }) => (
 );
 
 const Home = ( {navigation} ) => {
+  
+  // 스터디 객체 생성 
   const renderItem = ({ item }) => (
     <Item id={item.id} name={item.name} tags={item.tag} navigation={navigation} />
   );
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+          activeOpacity={0.7}
+          // onPress={추가 명령어}
+          style={styles.touchableOpacityStyle}>
+          <AntDesign style={styles.floatingButtonStyle} name="pluscircle" color={"#56D3DB"} size={54} />
+        </TouchableOpacity>
+
+      <View style={styles.searchBar}>
+        <TouchableOpacity><Ionicons style={{paddingRight: 24}} name="search" color={"black"} size={24} /></TouchableOpacity>
+      </View>
+
       <FlatList
         data={studyList}
         renderItem={renderItem}
         keyExtractor={item => item.id}>
-      </FlatList>  
+      </FlatList>
 
     </View>
   );
 
 }
 
-
 const styles = StyleSheet.create({
+  touchableOpacityStyle: {
+    position: 'absolute',
+    width: 0,
+    height: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 50,
+    bottom: 50,
+    zIndex: 100, // works on ios
+    elevation: 100, // works on android
+  },
+  floatingButtonStyle: {
+    width: 55,
+    height: 55,
+  },
+
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#ffffff",
     alignContent: 'center',
+  },
+  searchBar: {
+    width: '100%',
+    height: 55,
+    backgroundColor: "#ffffff",
+    zIndex: 10,
+    elevation: 10,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   studyComponent: {
     width: '92.3%',
@@ -95,6 +135,8 @@ const styles = StyleSheet.create({
     padding: 11,
     marginBottom: 5,
     overflow: 'hidden',
+    zIndex: 0,
+    elevation: 0,
 
   },
   compTitle: {
@@ -114,7 +156,8 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: '#E3E3E3',
     color: '#152536',
-  }
+  },
+
 });
 
 export default Home;
