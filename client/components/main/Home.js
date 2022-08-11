@@ -75,7 +75,7 @@ const Home = ( {navigation} ) => {
     <View style={styles.container}>
       <TouchableOpacity
           activeOpacity={0.7}
-          // onPress={추가 명령어}
+          onPress={ () => { navigation.navigate('CreateStudy') }}
           style={styles.touchableOpacityStyle}>
           <AntDesign style={styles.floatingButtonStyle} name="pluscircle" color={"#56D3DB"} size={54} />
         </TouchableOpacity>

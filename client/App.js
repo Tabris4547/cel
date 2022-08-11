@@ -17,6 +17,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeTab from './components/main/Home'
 import StudyBoard from './components/StudyBoard'
+import CreateStudy from './components/CreateStudy'
 
 const Tab = createMaterialBottomTabNavigator();
 // const Tab = createBottomTabNavigator();
@@ -65,7 +66,7 @@ function RootNavigator() {
       <Stack.Screen name="Login" component={Setting} options={ {headerShown: false} } />
       <Stack.Screen name="Root" component={TabNavigator} options={ {headerShown: false} } />
       <Stack.Screen name="StudyBoard" component={StudyBoard} options={ {headerShown: false} } />
-      <Stack.Screen name="SearchBoard" component={StudyBoard} options={ {headerShown: false} } />
+      <Stack.Screen name="CreateStudy" component={CreateStudy} options={ {headerShown: false} } />
     </Stack.Navigator>
   );
 }
