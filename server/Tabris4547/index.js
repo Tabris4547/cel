@@ -26,4 +26,4 @@ app.use(session({
 }));
 
 
-var router = require('./router/main')(app, fs);
+var router = require('./router/get')(app, fs);

@@ -13,7 +13,7 @@ module.exports = function(app, fs)
   //게시판
   app.get('/list', function (req, res) {
     var sess = req.session;
-    fs.renderFile( __dirname + "/../../client/components/home/main.js",function(err,data){
+    fs.renderFile( __dirname + "../../../client/components/main/home.js",function(err,data){
       if (error)
       {
         throw error;
@@ -23,32 +23,27 @@ module.exports = function(app, fs)
   });
 
   //게시판 정렬
-  app.get('/list/sort_key',function(req,res)){
-
-
-  });
+  // app.get('/list/sort_key',function(req,res)){
+  //
+  //
+  // });
   //상세보기
-  app.get('/detail',function(req,res)){
+  app.get('/detail',function(req,res){
     var sess = req.session;
-    fs.renderFile( __dirname + "/../../client/components/StudyBoard.js",function(err,data){
-      if (error)
-      {
-        throw error;
-      }
+    fs.renderFile( __dirname + "../../../client/components/StudyBoard.js",function(err,data){
+
       res.end(data)
     })
   });
-
-  });
   //상세보기의 참가신청
-  app.get('/detail/opentalk',function(req,res)){
-
-
-  });
+  // app.get('/detail/opentalk',function(req,res)){
+  //
+  //
+  // });
   //floating 페이지
-  app.get('/write',function(req,res)){
+  app.get('/write',function(req,res){
     var sess = req.session;
-    fs.renderFile( __dirname + "/../../client/components/CreateStudy.js",function(err,data){
+    fs.renderFile( __dirname + "../../../client/components/CreateStudy.js",function(err,data){
       if (error)
       {
         throw error;

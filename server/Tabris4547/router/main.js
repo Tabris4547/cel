@@ -10,7 +10,8 @@ module.exports = function(app, fs)
           length: 5,
           name: sess.name,
           username: sess.username
-      })
+      });
+
   });
 
     app.get('/list', function (req, res) {
@@ -18,6 +19,7 @@ module.exports = function(app, fs)
            console.log( data );
            res.end( data );
        });
+
     });
 
     app.get('/getUser/:username', function(req, res){
