@@ -1,17 +1,18 @@
 // import React, { Component } from 'react';
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import {
   StyleSheet,
   View,
   Text,
-  Button,
   TouchableOpacity,
-  // ScrollView,
   FlatList,
-  Alert,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import axios from 'axios';
+
+// WARING || VirtualizedList: You have a large list that is slow to update
+// https://stackoverflow.com/questions/44743904/virtualizedlist-you-have-a-large-list-that-is-slow-to-update
 
 // 스터디 목록
 const studyList = [
@@ -57,18 +58,40 @@ const Item = ({ id, name, tags, navigation }) => (
   <TouchableOpacity style={styles.studyComponent} onPress={ () => { navigation.navigate('StudyBoard', {id: {id}}) }}>
     <Text style={styles.compTitle}> {name}  </Text>
     <View style={styles.tagBox}>
-      {tags.map((tag, idx) => (
+      <Text> 임시로 tags </Text>
+      <Text> {tags} </Text>
+      {/* {tags.map((tag, idx) => (
           <Text style={styles.compTag} key={idx}> # {tag} </Text>
-      ))}
+      ))} */}
     </View>
   </TouchableOpacity>
 );
 
 const Home = ( {navigation} ) => {
-  
-  // 스터디 객체 생성 
+
+  const [studys, setStudys] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getStudys = async () => {
+      try {
+        setError(null); setStudys(null); setLoading(true); // data initialization 
+        const response = await axios.get( 'https://jsonplaceholder.typicode.com/comments' ); // dummy json data
+        setStudys(response.data);
+      } catch (e) { setError(e); }
+      setLoading(false);
+    };
+    getStudys();
+  }, []);
+
+  if (loading) return <Text>스터디 목록 로딩중</Text>;
+  if (error) return <Text>에러가 발생했습니다</Text>;
+  if (!studys) return null;
+
   const renderItem = ({ item }) => (
-    <Item id={item.id} name={item.name} tags={item.tag} navigation={navigation} />
+    // <Item id={item.id} name={item.name} tags={item.tag} navigation={navigation} />
+    <Item id={item.id} name={item.name} tags={item.postId} navigation={navigation} />
   );
 
   return (
@@ -85,7 +108,7 @@ const Home = ( {navigation} ) => {
       </View>
 
       <FlatList
-        data={studyList}
+        data={studys}
         renderItem={renderItem}
         keyExtractor={item => item.id}>
       </FlatList>
