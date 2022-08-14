@@ -42,6 +42,9 @@ bower_components
 build/Release
 
 # Dependency directories
+# Client
+client/node_modules/
+# Server
 server/Tabris4547/node_modules/
 server/k0000k/node_modules/
 jspm_packages/
