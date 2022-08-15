@@ -58,11 +58,11 @@ const Item = ({ id, name, tags, navigation }) => (
   <TouchableOpacity style={styles.studyComponent} onPress={ () => { navigation.navigate('StudyBoard', {id: {id}}) }}>
     <Text style={styles.compTitle}> {name}  </Text>
     <View style={styles.tagBox}>
-      <Text> 임시로 tags </Text>
-      <Text> {tags} </Text>
-      {/* {tags.map((tag, idx) => (
+      {/* <Text> 임시로 tags </Text>
+      <Text> {tags} </Text> */}
+      {tags.map((tag, idx) => (
           <Text style={styles.compTag} key={idx}> # {tag} </Text>
-      ))} */}
+      ))}
     </View>
   </TouchableOpacity>
 );
@@ -77,7 +77,8 @@ const Home = ( {navigation} ) => {
     const getStudys = async () => {
       try {
         setError(null); setStudys(null); setLoading(true); // data initialization 
-        const response = await axios.get( 'https://jsonplaceholder.typicode.com/comments' ); // dummy json data
+        // const response = await axios.get( 'https://jsonplaceholder.typicode.com/comments' ); // dummy json data
+        const response = await axios.get( 'http://localhost:8080/studyboard/get' ); // dummy json data
         setStudys(response.data);
       } catch (e) { setError(e); }
       setLoading(false);
@@ -91,7 +92,7 @@ const Home = ( {navigation} ) => {
 
   const renderItem = ({ item }) => (
     // <Item id={item.id} name={item.name} tags={item.tag} navigation={navigation} />
-    <Item id={item.id} name={item.name} tags={item.postId} navigation={navigation} />
+    <Item id={item.id} name={item.name} tags={item.tag} navigation={navigation} />
   );
 
   return (
