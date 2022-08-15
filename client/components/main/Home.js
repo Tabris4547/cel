@@ -78,9 +78,9 @@ const Home = ( {navigation} ) => {
       try {
         setError(null); setStudys(null); setLoading(true); // data initialization 
         // const response = await axios.get( 'https://jsonplaceholder.typicode.com/comments' ); // dummy json data
-        const response = await axios.get( 'http://localhost:8080/studyboard/get' ); // dummy json data
+        const response = await axios.get( 'http://10.0.2.2:8080/studyboard/get' ); // dummy json data
         setStudys(response.data);
-      } catch (e) { setError(e); }
+      } catch (e) { setError(e); console.log(e) }
       setLoading(false);
     };
     getStudys();
