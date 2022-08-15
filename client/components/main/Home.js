@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   compTag: {
-    backgroundColor: 'red',
+    //backgroundColor: 'red',
     padding: 4,
     marginRight: 4,
     borderRadius: 100,
