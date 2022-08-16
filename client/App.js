@@ -78,14 +78,14 @@ function TabNavigator() {
       activeColor= "#56D3DB"
       barStyle={{ backgroundColor: "white", border: "none" }}>
 
-      <Tab.Screen name="설정" component={Setting} 
+      <Tab.Screen name="설정" component={Setting}
         options={{headerShown: false,
           tabBarLabel: 'Setting',
           tabBarIcon: ({ color }) => (
           <Ionicons name="ios-settings" color={color} size={25} />
         ),
       }} />
-      <Tab.Screen name="홈" component={HomeTab} 
+      <Tab.Screen name="홈" component={HomeTab}
         options={{headerShown: false,
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
@@ -111,6 +111,18 @@ function TabNavigator() {
 }
 
 const App = () => {
+  // const URL=" http://localhost:3000/";
+  // fetch(URL).then(response=>{
+  //   if (response.status==200)
+  //   {
+  //     return response.text();
+  //   }
+  //   else {
+  //     throw new Error("something is wrong");
+  //   }
+  // }).then(responseText => {
+  //   this.setState({response:responseText});
+  // })
     return (
       <NavigationContainer>
         <RootNavigator />
