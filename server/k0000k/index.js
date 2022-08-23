@@ -1,34 +1,29 @@
 const express = require("express");
 const app = express();
-//const mysql = require('mysql');
+const mysql = require('mysql');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const {urlencoded} = require('body-parser');
 const port = 8080;
 
+const db = mysql.createPool({
+   host: "localhost",
+    user: "root",
+    password: "0000",
+    database: "study_user_information"
+});
+
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-
 app.get('/studyboard/get', (req, res) => {
-    res.json([
-        {
-        id: '1',
-        name: 'testname1',
-        tag: ['tag 01', 'tag 02', 'tag 03']
-        },
-        {
-            id: '2',
-            name: 'testname2',
-            tag: ['tag 01', 'tag 02', 'tag 03']
-        },
-        {
-            id: '3',
-            name: 'testname3',
-            tag: ['tag 01', 'tag 02', 'tag 03']
-        }
-        ])
+    const sqlQuery = "select study.study_number, study_name, study_tag " +
+        "from study inner join study_tag " +
+        "on study.study_number=study_tag.study_number;"
+    db.query(sqlQuery, (err, result) => {
+        res.json(result);
+    })
 })
 
 app.post("/api/post", (req, res)=>{
