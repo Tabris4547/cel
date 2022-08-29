@@ -14,16 +14,15 @@ app post('/write',(req,res))=>{
 
   const sqlQuery1="INSERT into study(study_name,explanation,rule,mento_presence,study_president_id,study_start_date,open_chat_link)"+
             " values(?,?,?,?,?,now(),?)";
+  db.query(sqlQuery1,(err,result)=>{
 
-
+  })
   db.query('SELECT study_number from study where study_name=study_name',(err,result))=>{
     num = result[0].study_number;
   })
   const sqlQuery2="INSERT into study_tag(study_number,study_tag)"+
                   "values(num,?)";
-  db.query(sqlQuery1,(err,result)=>{
 
-  })
 
   db.query(sqlQuery2,(err,result)=>{
     req.redirect('/')
