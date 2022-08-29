@@ -116,8 +116,7 @@ build/Release
 # Client
 client/node_modules/
 # Server
-server/Tabris4547/node_modules/
-server/k0000k/node_modules/
+server/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
