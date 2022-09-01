@@ -1,5 +1,5 @@
-#데이터 베이스 삭제
-DROP DATABASE study_user_information;
+-- #데이터 베이스 삭제
+-- DROP DATABASE study_user_information;
 #데이터베이스 생성
 CREATE DATABASE study_user_information DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE study_user_information;
